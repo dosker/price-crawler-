@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Store Trees</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Page title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @store_trees.each do |store_tree| %>
+      <tr>
+        <td><%= store_tree.page_title %></td>
+        <td><%= link_to 'Show', store_tree %></td>
+        <td><%= link_to 'Edit', edit_store_tree_path(store_tree) %></td>
+        <td><%= link_to 'Destroy', store_tree, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Store tree', new_store_tree_path %>
