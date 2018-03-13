@@ -12,6 +12,8 @@ This Rails Program can fetch onlines store price data and let user quert and com
 
   cd honestbee_crawler/honestbee_crawler
 
+  bundle install
+
   bundle exec rake db:create
 
   bundle exec rake db:migrate
