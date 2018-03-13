@@ -1,9 +1,16 @@
-== Price Crawler for Online Store
+= Price Crawler for Online Store
 
 This Rails Program can fetch onlines store price data and let user quert and compare product.For now only support rt-mart and costo.
 
-<h1>deploy</h1>
+== Deploy
+
+Following steps will help deply this rails.
+
+sudo apt-get install redis
+cd honestbee_crawler/honestbee_crawler
+bundle exec rake db:create
+bundle exec rake db:migrate
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+
