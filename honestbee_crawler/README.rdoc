@@ -4,12 +4,20 @@ This Rails Program can fetch onlines store price data and let user quert and com
 
 == Deploy
 
-Following steps will help deply this rails.
+Following steps will help deply this rails:.
 
-sudo apt-get install redis
-cd honestbee_crawler/honestbee_crawler
-bundle exec rake db:create
-bundle exec rake db:migrate
+>>>
+sudo apt-get install redis.
+cd honestbee_crawler/honestbee_crawler.
+bundle exec rake db:create.
+bundle exec rake db:migrate.
+>>>
+
+==Usage
+
+
+
+
 
 
 
