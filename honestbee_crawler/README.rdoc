@@ -6,23 +6,42 @@ This Rails Program can fetch onlines store price data and let user quert and com
 
 ==Following steps will help deply this rails:.
 
-  sudo apt-get install redis.
+  sudo apt-get install redis
 
-  cd honestbee_crawler/honestbee_crawler.
+  cd honestbee_crawler/honestbee_crawler
 
-  bundle exec rake db:create.
+  bundle exec rake db:create
 
-  bundle exec rake db:migrate.
+  bundle exec rake db:migrate
 
 ===And open three terimenal:
 
 First:
 
-  
+  cd honestbee_crawler/honestbee_crawler
+  rails s --bind 0.0.0.0
 
+Second:
 
+  cd honestbee_crawler/honestbee_crawler
+  radis-server /etc/radis/radis.conf
+  bundle exec sidekiq
+
+Third:
+  rails runner "RtMart.perform_later"
+  rails runner "CostCo.perform_later"
 
 ==Usage
+
+Query:
+
+  curl http://127.0.0.1:3000/query/index
+  curl http://127.0.0.1:3000/query/show/rt_mart.json
+  curl http://127.0.0.1:3000/query/show/costco.json
+
+Compare:
+
+  curl http://127.0.0.1:3000/compare/show/[keyword].json
 
 
 
