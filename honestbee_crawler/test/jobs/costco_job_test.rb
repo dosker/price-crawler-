@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class StoreTreeTest < ActiveSupport::TestCase
+class CostcoJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end
