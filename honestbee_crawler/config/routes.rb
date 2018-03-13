@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'query/show/:id' , :to=>'query#show' , :as =>"show_query"
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
