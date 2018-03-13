@@ -2,7 +2,6 @@ class CostcoJob < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
-    # Do something later
 
     Rails.logger.debug "#{self.class.name}: Start Fetch Price For Costco"
 
@@ -24,10 +23,15 @@ class CostcoJob < ActiveJob::Base
       products_data=products_page.search('li.product-item').search('div.product-info-wrapper')
 
       products_data.each do |product|
-        product_price = product.search('span.notranslate')
+        product_price = product.search('span.notranslate')[0]
+        product_price=product_price.gsub ' $',''
+        product_price=product_price.gsub ' ,',''
         next if product_price.size==0
         product_name = product.search('a.js-lister-name').text
-        Rails.logger.debug "#{self.class.name}: " + product_name + ' '+product_price[0]
+        Rails.logger.debug "#{self.class.name}: " + product_name + ' '+product_price
+        #p=new Product
+        #p.product_name=product_name
+
       end
 
     end

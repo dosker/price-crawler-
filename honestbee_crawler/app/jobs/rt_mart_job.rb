@@ -6,8 +6,7 @@ class RtMartJob < ActiveJob::Base
 
   def perform(*args)
     # Do something later
-
-    Rails.logger.debug "#{self.class.name}: Start Fetch Price For 大潤發"
+    #Rails.logger.debug "#{self.class.name}: Start Fetch Price For 大潤發"
 
     agent = Mechanize.new
     page = agent.get('http://www.rt-mart.com.tw/direct/')
@@ -36,11 +35,15 @@ class RtMartJob < ActiveJob::Base
       end
 
       sub_type_page.each do |page_num|
-        Rails.logger.debug "#{self.class.name}: " + page_num
+        #Rails.logger.debug "#{self.class.name}: " + page_num
         products_page = agent.get('http://www.rt-mart.com.tw/direct/' + page_num)
         products_data=products_page.search('div.indexProList')
         products_data.each do |product|
           Rails.logger.debug "#{self.class.name}: " + product.children[1].children[1].children[0]['title'] + ' ' + product.children[7].children[0].children[1].text
+          p=new Product
+          p.name=product.children[1].children[1].children[0]['title']
+          p.price=product.children[7].children[0].children[1].text.to_i
+          p.source_store='rt_mart'
         end
       end
     end
