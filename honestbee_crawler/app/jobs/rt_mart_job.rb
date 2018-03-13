@@ -40,10 +40,11 @@ class RtMartJob < ActiveJob::Base
         products_data=products_page.search('div.indexProList')
         products_data.each do |product|
           Rails.logger.debug "#{self.class.name}: " + product.children[1].children[1].children[0]['title'] + ' ' + product.children[7].children[0].children[1].text
-          p=new Product
-          p.name=product.children[1].children[1].children[0]['title']
-          p.price=product.children[7].children[0].children[1].text.to_i
+          p=Product.new
+          p.product_name=product.children[1].children[1].children[0]['title']
+          p.product_price=product.children[7].children[0].children[1].text.to_i
           p.source_store='rt_mart'
+          p.save
         end
       end
     end

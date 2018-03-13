@@ -23,14 +23,20 @@ class CostcoJob < ActiveJob::Base
       products_data=products_page.search('li.product-item').search('div.product-info-wrapper')
 
       products_data.each do |product|
-        product_price = product.search('span.notranslate')[0]
-        product_price=product_price.gsub ' $',''
-        product_price=product_price.gsub ' ,',''
+        product_price = product.search('span.notranslate')
         next if product_price.size==0
+        price = product_price[0].text
+        price = price.sub! ' $',''
+        if price.include? ','
+          price = price.sub! ',',''
+        end
         product_name = product.search('a.js-lister-name').text
-        Rails.logger.debug "#{self.class.name}: " + product_name + ' '+product_price
-        #p=new Product
-        #p.product_name=product_name
+        Rails.logger.debug "#{self.class.name}: " + product_name + ' '+price
+        p=Product.new
+        p.product_name=product_name
+        p.product_price=price.to_i
+        p.source_store='costco'
+        p.save
 
       end
 
