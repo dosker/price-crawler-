@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'compare/show/:keyword' , :to=>'compare#show' , :as =>"show_compare"
+
   get 'query/show/:id' , :to=>'query#show' , :as =>"show_query"
 
 
